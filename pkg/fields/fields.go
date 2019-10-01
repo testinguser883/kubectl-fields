@@ -68,7 +68,10 @@ func findParentIndex(spaces []int, index int, tabLength int) int {
 	return -1
 }
 
-// Parses given kubectl resources hierarchy order
+/* Parse function parses given input and prints one liner hierarchy structures
+input: Expects kubectl explain --recursive output
+patterns: string you want to find 
+*/
 func Parse(input string, patterns []string, ignoreCase bool) {
 	const Separator = "FIELDS:"
 	const TabLength = 3
