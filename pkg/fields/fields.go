@@ -74,7 +74,7 @@ func findParentIndex(spaces []int, index int, tabLength int) int {
 /*
 input: Expects kubectl explain --recursive output
 patterns: Hierarchy to be computed for given patterns
-ignoreCase: Ignore case distinction while pattern matching 
+ignoreCase: Ignore case distinction while pattern matching
 */
 func Parse(input string, patterns []string, ignoreCase bool) {
 	const Separator = "FIELDS:"
