@@ -17,8 +17,8 @@ package fields
 
 import (
 	"fmt"
-	"strings"
 	"regexp"
+	"strings"
 )
 
 // This method uses huffman compression analogy to compress kubectl explain recursive output for further processing
@@ -28,7 +28,7 @@ func analyze(data string) ([]int, []string) {
 	counter := 0
 	substring := ""
 
-	for i:=0; i<len(data); i++ {
+	for i := 0; i < len(data); i++ {
 		if data[i] == 32 {
 			if substring != "" {
 				spaces = append(spaces, counter)
@@ -38,7 +38,7 @@ func analyze(data string) ([]int, []string) {
 			}
 			counter++
 		} else {
-			substring+=string(data[i])
+			substring += string(data[i])
 		}
 	}
 
@@ -60,8 +60,8 @@ func findAndDelete(data string, regex string) string {
 
 // This method returns the parent id of given child id
 func findParentIndex(spaces []int, index int, tabLength int) int {
-	for i:=index-1; i>=0; i-- {
-		if spaces[i] == spaces[index] - tabLength {
+	for i := index - 1; i >= 0; i-- {
+		if spaces[i] == spaces[index]-tabLength {
 			return i
 		}
 	}
@@ -70,20 +70,20 @@ func findParentIndex(spaces []int, index int, tabLength int) int {
 
 // Parses given kubectl resources hierarchy order
 func Parse(input string, patterns []string, ignoreCase bool) {
-	const Seperator = "FIELDS:"
+	const Separator = "FIELDS:"
 	const TabLength = 3
 
-	start := getIndex(input, Seperator)
+	start := getIndex(input, Separator)
 	if start == -1 {
 		fmt.Println(input)
 		return
 	}
 
 	// Take only data under fields section
-	data := input[start+len(Seperator):]
+	data := input[start+len(Separator):]
 
 	// Deletes all tabs, data type information and new lines from input for compressed processing
-	const Trash = string(9)+"|"+`<[^>]*>|\n`
+	const Trash = string(9) + "|" + `<[^>]*>|\n`
 	data = findAndDelete(data, Trash)
 
 	var spaces []int
@@ -96,9 +96,9 @@ func Parse(input string, patterns []string, ignoreCase bool) {
 	var hierarchy string
 	var index int
 
-	for j:=0; j<len(patterns); j++ {
+	for j := 0; j < len(patterns); j++ {
 		pattern = patterns[j]
-		for i:=0; i<len(fields) ;i++ {
+		for i := 0; i < len(fields); i++ {
 			// Single conditional statement to check status of ignore case flag
 			// The first condition refers to case sensitive pattern match
 			// The second condition refers to case insensitive pattern match
@@ -112,7 +112,7 @@ func Parse(input string, patterns []string, ignoreCase bool) {
 					}
 				}
 				fmt.Println(hierarchy)
-			} 
+			}
 		}
 	}
 }

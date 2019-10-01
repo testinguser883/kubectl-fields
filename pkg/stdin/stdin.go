@@ -18,9 +18,9 @@ limitations under the License.
 package stdin
 
 import (
-	"os"
-	"io"
 	"bufio"
+	"io"
+	"os"
 )
 
 // GetStdInput method reads std input from kubectl explain recursive module
@@ -29,11 +29,11 @@ func GetStdInput() string {
 	var output []rune
 
 	for {
-			input, _, err := reader.ReadRune()
-			if err != nil && err == io.EOF {
-					break
-			}
-			output = append(output, input)
+		input, _, err := reader.ReadRune()
+		if err != nil && err == io.EOF {
+			break
+		}
+		output = append(output, input)
 	}
 	return string(output)
 }
