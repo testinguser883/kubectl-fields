@@ -13,6 +13,8 @@ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
 */
+
+// Package fields is used to extract the parental fields for given kubectl resource
 package fields
 
 import (
@@ -68,9 +70,11 @@ func findParentIndex(spaces []int, index int, tabLength int) int {
 	return -1
 }
 
-/* Parse function parses given input and prints one liner hierarchy structures
+// Parse function parses given input and prints one liner hierarchy structures
+/*
 input: Expects kubectl explain --recursive output
-patterns: string you want to find 
+patterns: Hierarchy to be computed for given patterns
+ignoreCase: Ignore case distinction while pattern matching 
 */
 func Parse(input string, patterns []string, ignoreCase bool) {
 	const Separator = "FIELDS:"

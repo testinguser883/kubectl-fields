@@ -14,7 +14,7 @@ See the License for the specific language governing permissions and
 limitations under the License.
 */
 
-// Package tests is used only to run build tests on drone CI
+// Package stdin takes input from cli via pipes. Built especially to run build tests on drone CI
 package stdin
 
 import (
